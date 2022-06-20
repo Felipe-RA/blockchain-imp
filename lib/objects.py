@@ -12,9 +12,12 @@ class HashedNode:
         self.right_leave = None
         self.hashed_value = hashlib.sha256(input_value.encode("utf-8")).hexdigest()
 
-    def __str__(self) -> str:
+    def __repr__(self) -> str:
         return "left leave: " + str(self.left_leave) + "right leave: " + str(self.right_leave) \
              + "Hash: " + str(self.hashed_value)
+
+    def __str__(self) -> str:
+        return str(self.left_leave) + str(self.right_leave) +  str(self.hashed_value)
 
 
 class Transaction:
@@ -44,9 +47,18 @@ class Transaction:
             user_0_signature = '0'
             concat_string = str(self.user_1_public_key) + str(prev_transaction_hash)
             concat_string = hashlib.sha256(concat_string.encode("utf-8")).hexdigest() + user_0_signature
+
             self.user_0_signature = hashlib.sha256(concat_string.encode("utf-8")).hexdigest()
         else:
-            user_0_signature = input("Input your signature: ")
             concat_string = str(self.user_1_public_key) + str(prev_transaction_hash)
-            concat_string = hashlib.sha256(concat_string.encode("utf-8")).hexdigest() + user_0_signature
+            concat_string = hashlib.sha256(concat_string.encode("utf-8")).hexdigest() + input("Input your Private Key: ")
+
             self.user_0_signature = hashlib.sha256(concat_string.encode("utf-8")).hexdigest()
+
+    def __repr__(self) -> str:
+        return "Transaction with: " + "User1PublicKey: " + str(self.user_1_public_key) + \
+            "TransactionInputs: " + str(self.inputs) + "TransactionOutputs: " + str(self.outputs) + \
+            "HashPreviousTransaction:" + str(self.prev_transaction_hash)
+
+    def __str__(self) -> str:
+        return str(self.user_1_public_key) + str(self.inputs) + str(self.outputs) + str(self.prev_transaction_hash)
