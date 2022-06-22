@@ -1,4 +1,5 @@
-from objects import *
+from Block import *
+from HashedNode import *
 
 def create_tree(leaves,og_tree=[]) -> HashedNode:
     """
@@ -40,5 +41,5 @@ def add_node(root_node, input_value) -> HashedNode:
     Returns the root node of the merkle tree
     """
 
-    return create_tree(root_node, input_value)
+    return create_tree(input_value, root_node)
 
