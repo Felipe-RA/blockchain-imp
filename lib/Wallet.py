@@ -17,9 +17,10 @@ class Wallet:
         priv_key_seed = ''.join(random.choice(string.ascii_letters + string.digits + str(gibberish[::-1])) for i in range(64))
 
         self.public_key = hashlib.sha256(pub_key_seed.encode("utf-8")).hexdigest()
-        self.priv_key = hashlib.sha256(priv_key_seed.encode("utf-8")).hexdigest()
+        priv_key = hashlib.sha256(priv_key_seed.encode("utf-8")).hexdigest()
+        print("\nPrivate Key: YOU MUST WRITE IT DOWN IT WILL NOT BE STORED: ", priv_key)
 
-        signature_str = self.public_key + self.priv_key
+        signature_str = self.public_key + priv_key
         self.signature =  hashlib.sha256(signature_str.encode("utf-8")).hexdigest()
         self.balance = 0
 

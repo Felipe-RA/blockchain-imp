@@ -28,6 +28,8 @@ class NetworkNode:
         a string containing the required nonce
 
         """
+
+        
         string_space = string.ascii_letters+string.hexdigits
         searching_nonce = ""
         flag = True
@@ -35,7 +37,7 @@ class NetworkNode:
         while flag:
             for i in string_space:
                 searching_nonce += searching_nonce + i
-                if hashlib.sha256(searching_nonce.encode("utf-8")).hexdigest()[0:nonce_leading_zeros] == [0]*nonce_leading_zeros:
+                if hashlib.sha256(searching_nonce.encode("utf-8")).hexdigest()[0:nonce_leading_zeros] == "0"*nonce_leading_zeros:
                     flag =  False
                     break
 
@@ -83,7 +85,9 @@ class NetworkNode:
         return Block(merkle_root, nonce)
 
 
+    def __repr__(self) -> str:
         
+        return "Node IP:" + self.node_ip + "\nNode Wallet Public Key: " + self.wallet_node.public_key
 
 
 

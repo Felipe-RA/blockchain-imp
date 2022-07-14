@@ -14,6 +14,7 @@ class Transaction:
         Params:
         user_1_wallet: A ~Wallet object from the user that starts a transaction
         inputs: A list with the coins that are entering the transaction
+
         outputs: A list with tuples: coins that are exiting the transaction
             (for multiple outputs, and change if any), and the respective public keys of the wallets
 
@@ -42,9 +43,9 @@ class Transaction:
         
 
     def __repr__(self) -> str:
-        return "Transaction with: " + "User1PublicKey: " + str(self.user_1_public_key) + \
-            "TransactionInputs: " + str(self.inputs) + "TransactionOutputs: " + str(self.outputs) + \
-            "HashPreviousTransaction:" + str(self.prev_transaction_hash)
+        return "TRANSACTION INFO:\n" + "User1PublicKey: " + str(self.user_1_public_key) + \
+            "\nTransactionInputs: " + str(self.inputs) + "\nTransactionOutputs: " + str(self.outputs) + \
+            "\nHashPreviousTransaction:" + str(self.prev_transaction_hash)
 
     def __str__(self) -> str:
         return str(self.user_1_public_key) + str(self.inputs) + str(self.outputs) + str(self.prev_transaction_hash)
