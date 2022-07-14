@@ -8,7 +8,10 @@ You can find the original WhitePaper here: [Bitcoin: A Peer-to-Peer Electronic C
 
 ## Instructions
 
-Since I can not provide a detailed demo due to time constrains. I will leave some guidelines here:
+"Please run the __init__.py module to run a test of the libs"
+
+## Guidelines
+
 
 - All classes and functions are documented, do take a look in case you do not understand any implementation logic.
 - `Wallet()` to create a SHA256 generated wallet. It will ask you to put some gibberish to increase entropy, but this is not required.
