@@ -30,7 +30,7 @@ class NetworkNode:
 
         """
 
-        
+        #string_space = string.ascii_letters+string.hexdigits
         string_space = string.ascii_letters+string.hexdigits
         searching_nonce = ""
         flag = True
@@ -69,7 +69,11 @@ class NetworkNode:
                                             genesis=True
                                             )
                                         )
-            
+            merkle_root = create_tree([str(i) for i in list_of_transactions])
+            nonce = NetworkNode.mine_block()
+
+            return Block(merkle_root,nonce, is_genesis_block = True)
+
         else:
             ## we INSERT a transaction at the start of the list of transactions with the miners commission
             list_of_transactions.insert(0,
@@ -79,11 +83,10 @@ class NetworkNode:
                                             )
                                         )
 
+            merkle_root = create_tree([str(i) for i in list_of_transactions])
+            nonce = NetworkNode.mine_block()
 
-        merkle_root = create_tree([str(i) for i in list_of_transactions])
-        nonce = NetworkNode.mine_block()
-
-        return Block(merkle_root, nonce)
+            return Block(merkle_root, nonce)
 
 
     def __repr__(self) -> str:

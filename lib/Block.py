@@ -9,7 +9,7 @@ class MetadataBlockchain:
         pass
     
     @classmethod
-    def is_valid_nonce(nonce_to_check):
+    def is_valid_nonce(self, nonce_to_check):
         if nonce_to_check[0:3] != "000":
             return False
         if nonce_to_check in MetadataBlockchain.used_nonces:
@@ -39,9 +39,11 @@ class Block:
         if previous_block == '0' and is_genesis_block == False:
             raise ValueError("Detected incorrect input for previous block on non genesis block")
 
-        nonce_to_check = hashlib.sha256(nonce.encode("utf-8")).hexdigest()
+        
+        check_nonce = hashlib.sha256(nonce.encode("utf-8")).hexdigest()
+        print("DEBUG",check_nonce,type(check_nonce) )
 
-        if not MetadataBlockchain.is_valid_nonce(nonce_to_check):
+        if not MetadataBlockchain.is_valid_nonce(check_nonce):
             raise ValueError("Nonce is not correct!")
         ## end sanity checks
 

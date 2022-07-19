@@ -24,7 +24,7 @@ def create_tree(leaves,og_tree=[]) -> HashedNode:
                 aux.append(og_tree[i])
                 break
            
-            concatenatedHash = left_node.hashValue + right_node.hashValue
+            concatenatedHash = left_node.hashed_value + right_node.hashed_value
             parent = HashedNode(concatenatedHash)
             parent.left = left_node
             parent.right = right_node
