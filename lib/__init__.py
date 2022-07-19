@@ -37,6 +37,7 @@ print("\n", repr(network_node_0))
 
 print("\n\n", "MINING A BLOCK:  ...")
 
-obtained_nonce = NetworkNode.mine_block(nonce_leading_zeros=1)
+obtained_nonce = NetworkNode.mine_block()
 
 print("\nObtained nonce hash: " + hashlib.sha256(obtained_nonce.encode("utf-8")).hexdigest())
+print("Obtained nonce: " + obtained_nonce)

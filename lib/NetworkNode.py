@@ -2,6 +2,7 @@ from Block import *
 from utils import *
 import string
 import hashlib
+from random import choice
 
 class NetworkNode:
     """
@@ -15,14 +16,14 @@ class NetworkNode:
         self.node_ip = node_ip
 
     @classmethod
-    def mine_block(self, nonce_leading_zeros = 3) -> str:
+    def mine_block(self, nonce_leading_zeros = 4) -> str:
         """
         Mines a block, just increments a string using ascii letters and hexdigits,
         applies sha256 and evaluates if it has the required
         number of leading zeros
 
         params:
-        nonce_leading_zeros: number of zeros that the searched nonce must have at the start. default 3
+        nonce_leading_zeros: number of zeros that the searched nonce must have at the start. default 4
 
         returns:
         a string containing the required nonce
@@ -36,7 +37,7 @@ class NetworkNode:
 
         while flag:
             for i in string_space:
-                searching_nonce += searching_nonce + i
+                searching_nonce = "".join(choice(string_space) for i in range(64))
                 if hashlib.sha256(searching_nonce.encode("utf-8")).hexdigest()[0:nonce_leading_zeros] == "0"*nonce_leading_zeros:
                     flag =  False
                     break
